@@ -3,7 +3,7 @@ import json
 import requests
 
 
-url = "https://afisha.relax.by/kino/minsk/"
+url = "https://afisha.relax.by/clubs/minsk/"
 
 headers = {
     'accept': '*/*',
@@ -13,22 +13,22 @@ headers = {
 req = requests.get(url, headers=headers)
 src = req.text
 
-with open("index.html", 'w') as file:
+with open("index2.html", 'w') as file:
     file.write(src)
-with open("index.html") as file:
+with open("index2.html") as file:
     src = file.read()
 
 soup = BeautifulSoup(src, 'lxml')
-all_cinema_hrefs = soup.find_all(class_="schedule__place-link link")
+all_clubs_hrefs = soup.find_all(class_="schedule__place-link link")
 
-all_cinema = {}
-for item in all_cinema_hrefs:
+all_clubs = {}
+for item in all_clubs_hrefs:
     item_text = item.text.strip()
     item_href = item.get("href")
 
-    all_cinema[item_text] = item_href
-with open("all_cinema.json", "w") as file:
-    json.dump(all_cinema, file, indent=4, ensure_ascii=False)
+    all_clubs[item_text] = item_href
+with open("all_clubs.json", "w") as file:
+    json.dump(all_clubs, file, indent=4, ensure_ascii=False)
 
 
 

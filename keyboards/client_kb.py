@@ -1,15 +1,28 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+from aiogram import types
+import json
+
+
+with open("all_cinema.json") as file:
+    all_cinema = json.load(file)
+
+kino = []
+for item in all_cinema:
+    kino.append(item)
+
+
+start_button = ['Кинотеатры', 'Театры', 'Клубы']
+kb_client = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+kb_client.add(*start_button)
+
+
+kb5 = KeyboardButton("назад")
+keyboard = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+button_list = [KeyboardButton(text=cinema_name, callback_data='ok') for cinema_name in kino]
+keyboard.add(*button_list).add(kb5)
 
 
 
-
-kb1 = KeyboardButton("/Кино")
-kb2 = KeyboardButton("/Спектакли")
-kb3 = KeyboardButton("/Вечеринки")
-kb4 = KeyboardButton("???")
-
-kb_client = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-kb_client.row(kb1, kb2, kb3).add(kb4)
 
 
 

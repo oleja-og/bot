@@ -1,1 +1,1 @@
-from parsers import parser
+from parsers import parser, parser_theatre, parser_clubs
